@@ -2,6 +2,7 @@
 
 namespace AshAllenDesign\CommandSpinner\Traits;
 
+use AshAllenDesign\CommandSpinner\Classes\SpinnerType;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Spatie\Fork\Fork;
@@ -9,8 +10,6 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 
 trait HasSpinner
 {
-    public $frames = ['⠏', '⠛', '⠹', '⢸', '⣰', '⣤', '⣆', '⡇'];
-
     /**
      * Run a closure and display a spinner at the same time.
      *
@@ -18,14 +17,14 @@ trait HasSpinner
      * @param  string  $outputText
      * @return bool
      */
-    public function withSpinner(callable $closure, string $outputText = ''): bool
+    public function withSpinner(callable $closure, string $outputText = '', array $spinnerType = []): bool
     {
         $section = (new ConsoleOutput)->section();
 
         Fork::new()
             ->before(fn(): bool => $this->startSpinner())
             ->run(
-                $this->spin($section, $outputText),
+                $this->spin($section, $outputText, $spinnerType),
                 $this->runCallable($closure)
             );
 
@@ -38,13 +37,16 @@ trait HasSpinner
      *
      * @param $section
      * @param  string  $outputText
+     * @param  array  $spinnerType
      * @return callable
      */
-    private function spin($section, string $outputText): callable
+    private function spin($section, string $outputText, array $spinnerType): callable
     {
-        return function () use ($outputText, $section): void {
+        return function () use ($outputText, $section, $spinnerType): void {
+            $frames = count($spinnerType) ? $spinnerType : SpinnerType::SNAKE_VARIANT_1;
+
             while ($this->isSpinning()) {
-                foreach ($this->frames as $frame) {
+                foreach ($frames as $frame) {
                     $section->overwrite($frame.' '.$outputText);
                     usleep(100000);
                 }
