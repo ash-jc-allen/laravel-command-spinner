@@ -20,6 +20,8 @@ trait HasSpinner
      */
     public function withSpinner(callable $closure, string $outputText = '', array $spinnerType = []): mixed
     {
+        $this->cacheKey();
+
         $results = Fork::new()
             ->before(fn(): bool => $this->startSpinner())
             ->run(
