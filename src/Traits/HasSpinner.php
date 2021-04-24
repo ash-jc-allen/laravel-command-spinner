@@ -18,16 +18,16 @@ trait HasSpinner
      * @param  array  $spinnerType
      * @return bool
      */
-    public function withSpinner(callable $closure, string $outputText = '', array $spinnerType = []): bool
+    public function withSpinner(callable $closure, string $outputText = '', array $spinnerType = []): mixed
     {
-        Fork::new()
+        $results = Fork::new()
             ->before(fn(): bool => $this->startSpinner())
             ->run(
                 $this->spin($outputText, $spinnerType),
                 $this->runCallable($closure)
             );
 
-        return true;
+        return $results[1];
     }
 
     /**
@@ -71,10 +71,12 @@ trait HasSpinner
      */
     private function runCallable($closure): callable
     {
-        return function () use ($closure): void {
-            $closure();
+        return function () use ($closure): mixed {
+            $result = $closure();
 
             $this->stopSpinner();
+
+            return $result;
         };
     }
 
@@ -112,9 +114,9 @@ trait HasSpinner
      * Build and return a cache key that can be used to fetch
      * and update the spinner's state.
      *
-     * @return bool
+     * @return string
      */
-    private function cacheKey(): bool
+    private function cacheKey(): string
     {
         static $cacheKey;
 
