@@ -2,6 +2,13 @@
 <img src="/art/logo.png" alt="Laravel Command Spinner" width="600">
 </p>
 
+<p align="center">
+<a href="https://packagist.org/packages/ashallendesign/laravel-command-spinner"><img src="https://img.shields.io/packagist/v/ashallendesign/laravel-command-spinner.svg?style=flat-square" alt="Latest Version on Packagist"></a>
+<a href="https://packagist.org/packages/ashallendesign/laravel-command-spinner"><img src="https://img.shields.io/packagist/dt/ashallendesign/laravel-command-spinner.svg?style=flat-square" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/ashallendesign/laravel-command-spinner"><img src="https://img.shields.io/packagist/php-v/ashallendesign/laravel-command-spinner?style=flat-square" alt="PHP from Packagist"></a>
+<a href="https://github.com/ash-jc-allen/laravel-command-spinner/blob/master/LICENSE"><img src="https://img.shields.io/github/license/ash-jc-allen/laravel-command-spinner?style=flat-square" alt="GitHub license"></a>
+</p>
+
 ## Table of Contents
 
 - [Overview](#overview)
