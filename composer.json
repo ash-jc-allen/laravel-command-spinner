@@ -20,6 +20,7 @@
   "require": {
     "php": "^8.0",
     "illuminate/console": "^8.0",
+    "illuminate/support": "^8.0",
     "spatie/fork": "^0.0.2",
     "ext-json": "*"
   },
@@ -31,13 +32,6 @@
   "autoload": {
     "psr-4": {
       "AshAllenDesign\\CommandSpinner\\": "src/"
-    }
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "AshAllenDesign\\CommandSpinner\\Providers\\CommandSpinnerProvider"
-      ]
     }
   }
 }
