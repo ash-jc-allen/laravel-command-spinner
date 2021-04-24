@@ -1,4 +1,6 @@
-# Laravel Command Spinner
+<p align="center">
+<img src="https://github.com/ash-jc-allen/laravel-command-spinner/art/logo.png" alt="Laravel Command Spinner" width="600">
+</p>
 
 ## Table of Contents
 
