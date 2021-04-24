@@ -274,10 +274,6 @@ class SpinnerType
 
     ];
 
-    public const DIAMOND = [
-        '♦'
-    ];
-
     public const DICE = [
         '⚀',
         '⚁',
@@ -351,7 +347,7 @@ class SpinnerType
         '   '
     ];
 
-    public const DOT_8_BIT = [
+    public const DOTS_8_BIT = [
         "⠀",
         "⠁",
         "⠂",
