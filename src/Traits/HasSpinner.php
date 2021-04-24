@@ -11,7 +11,14 @@ trait HasSpinner
 {
     public $frames = ['⠏', '⠛', '⠹', '⢸', '⣰', '⣤', '⣆', '⡇'];
 
-    public function withSpinner(callable $closure, string $outputText): bool
+    /**
+     * Run a closure and display a spinner at the same time.
+     *
+     * @param  callable  $closure
+     * @param  string  $outputText
+     * @return bool
+     */
+    public function withSpinner(callable $closure, string $outputText = ''): bool
     {
         $cacheKey = 'spinner_'.time().'_'.Str::random(30);
 
@@ -27,6 +34,15 @@ trait HasSpinner
         return true;
     }
 
+    /**
+     * Start the spinner and keep going until we can detect in the
+     * state that it should stopped.
+     *
+     * @param $cacheKey
+     * @param $section
+     * @param  string  $outputText
+     * @return callable
+     */
     private function spin($cacheKey, $section, string $outputText): callable
     {
         return function () use ($outputText, $cacheKey, $section): void {
@@ -41,6 +57,14 @@ trait HasSpinner
         };
     }
 
+    /**
+     * Run the closure that was passed in by the user. After it has
+     * finished running, update the state to stop the spinner.
+     *
+     * @param $cacheKey
+     * @param $closure
+     * @return callable
+     */
     private function runCallable($cacheKey, $closure): callable
     {
         return static function () use ($closure, $cacheKey): void {
