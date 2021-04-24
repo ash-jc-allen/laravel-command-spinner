@@ -21,6 +21,7 @@
     "php": "^8.0",
     "illuminate/console": "^8.0",
     "illuminate/support": "^8.0",
+    "illuminate/cache": "^8.0",
     "spatie/fork": "^0.0.2",
     "ext-json": "*"
   },

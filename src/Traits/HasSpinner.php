@@ -15,6 +15,7 @@ trait HasSpinner
      *
      * @param  callable  $closure
      * @param  string  $outputText
+     * @param  array  $spinnerType
      * @return bool
      */
     public function withSpinner(callable $closure, string $outputText = '', array $spinnerType = []): bool
