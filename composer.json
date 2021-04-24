@@ -1,0 +1,43 @@
+{
+  "name": "ashallendesign/laravel-command-spinner",
+  "description": "A package for adding loading spinners to Laravel Artisan commands.",
+  "type": "library",
+  "homepage": "https://github.com/ash-jc-allen/laravel-command-spinner",
+  "keywords": [
+    "ashallendesign",
+    "laravel",
+    "laravel-command-spinner",
+    "command",
+    "artisan"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ash Allen",
+      "email": "mail@ashallendesign.co.uk"
+    }
+  ],
+  "require": {
+    "php": "^8.0",
+    "illuminate/console": "^8.0",
+    "spatie/fork": "^0.0.2",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "mockery/mockery": "^1.0",
+    "orchestra/testbench": "^3.8|^4.0|^5.0|^6.0",
+    "phpunit/phpunit": "^8.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "AshAllenDesign\\CommandSpinner\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "AshAllenDesign\\CommandSpinner\\Providers\\CommandSpinnerProvider"
+      ]
+    }
+  }
+}
