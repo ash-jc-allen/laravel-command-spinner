@@ -20,12 +20,10 @@ trait HasSpinner
      */
     public function withSpinner(callable $closure, string $outputText = '', array $spinnerType = []): bool
     {
-        $section = (new ConsoleOutput)->section();
-
         Fork::new()
             ->before(fn(): bool => $this->startSpinner())
             ->run(
-                $this->spin($section, $outputText, $spinnerType),
+                $this->spin($outputText, $spinnerType),
                 $this->runCallable($closure)
             );
 
@@ -36,14 +34,15 @@ trait HasSpinner
      * Start the spinner and keep going until we can detect in the
      * state that it should stopped.
      *
-     * @param $section
      * @param  string  $outputText
      * @param  array  $spinnerType
      * @return callable
      */
-    private function spin($section, string $outputText, array $spinnerType): callable
+    private function spin(string $outputText, array $spinnerType): callable
     {
-        return function () use ($outputText, $section, $spinnerType): void {
+        return function () use ($outputText, $spinnerType): void {
+            $section = (new ConsoleOutput)->section();
+
             $frames = count($spinnerType) ? $spinnerType : SpinnerType::SNAKE_VARIANT_1;
 
             while ($this->isSpinning()) {
