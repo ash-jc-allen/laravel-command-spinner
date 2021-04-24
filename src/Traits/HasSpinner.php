@@ -29,6 +29,8 @@ trait HasSpinner
                 $this->runCallable($closure)
             );
 
+        $this->cleanUp();
+
         return $results[1];
     }
 
@@ -123,5 +125,16 @@ trait HasSpinner
         }
 
         return $cacheKey = 'spinner_'.time().'_'.Str::random(30);
+    }
+
+    /**
+     * Clean up after running the spinner and delete the key
+     * from the cache.
+     *
+     * @return void
+     */
+    private function cleanUp(): void
+    {
+        Cache::forget($this->cacheKey());
     }
 }
