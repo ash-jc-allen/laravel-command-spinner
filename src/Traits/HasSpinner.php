@@ -48,15 +48,11 @@ trait HasSpinner
             $frames = count($spinnerType) ? $spinnerType : SpinnerType::SNAKE_VARIANT_1;
 
             while ($this->isSpinning()) {
-                $loop = 0;
-
-                while ($loop < 3) {
+                for ($loop = 0; $loop < 3; $loop++) {
                     foreach ($frames as $frame) {
                         $section->overwrite($frame.' '.$outputText);
                         usleep(100000);
                     }
-
-                    $loop++;
                 }
             }
 
